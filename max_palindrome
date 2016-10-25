@@ -1,0 +1,46 @@
+#include <iostream>
+#include <stdio.h>
+#include <vector>
+#include <string>
+#include <map>
+#include <algorithm>
+using namespace std;
+map <char, int> cnt;
+bool pal(string a){
+    for(int i = 0; i < a.size() / 2; i++){
+        if(a[i] != a[a.size() - i - 1]) return 0;
+    }
+    return 1;
+}
+int main() {
+    freopen("input.txt", "r", stdin);
+    freopen("output.txt", "w", stdout);
+    string a;
+    cin >> a;
+    for(int i = 0; i < a.size(); i++){
+        cnt[a[i]]++;
+    }
+    string result = "";
+    char oddChar = '0';
+    bool tg = 0;
+    for (map<char, int>::iterator it = cnt.begin(); it != cnt.end(); it++){
+        for(int i = 0; i < it->second / 2; i++){
+            result += it->first;
+        }
+        if((tg == 0) && (it->second % 2 == 1)){
+            oddChar = it->first;
+            tg = true;
+        }
+    }
+    string reverseRes = result;
+    reverse(reverseRes.begin(), reverseRes.end());
+    if (tg){
+        result += oddChar + reverseRes;
+    }
+    else{
+        result += reverseRes;
+    }
+    cout << result << endl;
+    cout << pal(result);
+    return 0;
+}
