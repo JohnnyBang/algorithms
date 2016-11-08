@@ -1,0 +1,56 @@
+#include <iostream>
+#include <stdio.h>
+#include <cmath>
+#include <ctime>
+#include <vector>
+#include <set>
+using namespace std;
+const int MAXN = 100, INF = MAXN + 10;
+vector <int> adj[MAXN];
+vector <int> weight[MAXN];
+int used[MAXN], dist[MAXN], n;
+#define mp make_pair
+
+void dejkstra(int v){
+    fill(dist, dist + MAXN, INF);
+    dist[v] = 0;
+    set<pair<int, int>> q;
+    q.insert(mp(0, v));
+    while (!q.empty()){
+        pair<int, int>current = (*q.begin());
+        int cur_v =current.second;
+//        int cur_dist = current.first;
+        q.erase(current);
+        for (int i = 0;i < adj[cur_v].size(); i++){
+            int to = adj[cur_v][i];
+            if (dist[to] > dist[cur_v] + weight[cur_v][i]){
+                q.erase(mp(dist[to], to));
+                dist[to] = dist[cur_v] +weight[cur_v][i];
+                q.insert(mp(dist[to], to));
+            }
+        }
+    }
+//    for(int i = 0; i < adj[v].size(); i++){
+//       if(dist[adj[v][i]] > dist[v] + weight[v][adj[v][i]]) dist[adj[v][i]] = dist[v] + weight[v][adj[v][i]];
+        
+//    }
+}
+
+int main()
+{
+    freopen ("input.txt","r",stdin);
+    freopen ("output.txt","w",stdout);
+//    int n, e, m;
+//    scanf("%d%d%d", &n, &e, &m);
+//    for(int i = 0; i < m; i++){
+//        int k;
+//        scanf("%d", &k);
+//        pair <int, int> a[100];
+//        scanf("%d%d", &a[i].first, &a[i].second);
+//        adj[0][a[i].first]
+//        for(int j = 1; j < k; j++){
+//            scanf("%d%d", &a[i].first, &a[i].second);
+//            
+//        }
+//    }
+}
