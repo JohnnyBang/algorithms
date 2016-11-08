@@ -1,0 +1,119 @@
+#include <iostream>
+#include <stdio.h>
+#include <cmath>
+#include <ctime>
+#include <vector>
+using namespace std;
+const int MAXN = 1e3, INF = MAXN + 10;
+vector <int> adj[MAXN][MAXN], weight[MAXN][4];
+int n, m, x, y;
+int maze[MAXN][MAXN];
+bool used1[MAXN][MAXN];
+bool used[MAXN][MAXN];
+bool res = false;
+int res1 = 1e9;
+int cnt;
+int dist[MAXN][MAXN];
+int pred[MAXN][MAXN];
+//void dejkstra(int x, int y) {
+//    dist[x][y] = 0;
+//    for (int i = 0; i < n; i++) {
+//        for(int it = 0; it < m; it++){
+//            int v = -1;
+//            int w = -1;
+//            int distV = INF;
+//            for (int j = 0; i < 4; j++) {
+//                if (used[i]) {
+//                    continue;
+//                }
+//                if (distV < dist[i][it]) {
+//                    continue;
+//                }
+//                v = i;
+//                w = j;
+//                distV = dist[i][j];
+//            }
+//            for (int j = 0; j < adj[v][w].size(); j++) {
+//                int u = adj[v][w][j];
+//                int weightU = weight[v][w][j];
+//                if (dist[v][w] + weightU < dist[u][w]) {
+//                    dist[u] = dist[v] + weightU;
+//                    pred[u] = v;
+//                }
+//        }
+//        used[v][w] = true;
+//        }
+//    }
+//}
+
+
+void
+
+
+//bool dfs_maze(int x, int y){
+//    used1[x][y] = 1;
+//    if(((x == 0) || (y == 0) || (x == n - 1) || (y == m - 1)) && (maze[x][y] == 0)){
+//        if (cnt < res1)
+//            res1 = cnt;
+//        return true;
+//    }
+//    if(x > 0){
+//        if((maze[x - 1][y] == 0) && (used1[x - 1][y] == 0)){
+//            cnt++;
+//            res |= dfs_maze(x - 1, y);
+//            cnt--;
+//        }
+//    }
+//    if(y > 0){
+//        if((maze[x][y - 1] == 0) && (used1[x][y - 1] == 0)){
+//            cnt++;
+//            res |= dfs_maze(x, y - 1);
+//            cnt--;
+//        }
+//    }
+//    if(x < n - 1){
+//        if((maze[x + 1][y] == 0) && (used1[x + 1][y] == 0)){
+//            cnt++;
+//            res |= dfs_maze(x + 1, y);
+//            cnt--;
+//        }
+//    }
+//    if(y < m - 1){
+//        if((maze[x][y + 1] == 0) && (used1[x][y + 1] == 0)){
+//            cnt++;
+//            res |= dfs_maze(x, y + 1);
+//            cnt--;
+//        }
+//    }
+//    return false;
+//}
+int main()
+{
+    freopen ("input.txt","r",stdin);
+    freopen ("output.txt","w",stdout);
+    scanf("%d%d%d%d", &n, &m, &x, &y);
+    for(int i = 0; i < n; i++){
+        for(int j = 0; j < m; j++){
+            weight[i][j].push_back(1);
+        }
+    }
+    for(int i = 0; i < n; i++){
+        for(int j = 0; j < m; j++){
+            scanf("%d", &maze[i][j]);
+        }
+    }
+    for(int i = 0; i < n; i++){
+        for(int j = 0; j < m; j++){
+            if(maze[i][j] == 1) adj[i][j].push_back(j);
+        }
+    }
+//    dfs_maze(x, y);
+//    if(res == true) printf("YES"); else printf("NO");
+//    printf("%d", res1);
+//    return 0;
+    for(int i = 0; i < n; i++){
+        for(int j = 0; j < m; j++){
+            printf("%d %d %d\n", i, j, dist[i][j]);
+        }
+    }
+}
